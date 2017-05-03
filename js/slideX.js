@@ -5,8 +5,6 @@
             index: 0,
             speed: 2000,
             timer: null,
-            min: 0.3,
-            max: 1,
             type: 'default'
         };
         this.box = document.getElementById(el);
