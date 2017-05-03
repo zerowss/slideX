@@ -1,4 +1,4 @@
-;(function (win, undefine) {
+;(function (win, undefined) {
 
     function lb(el, optins) {
         this.config = {
@@ -181,9 +181,9 @@
         }
     };
 
-    window.slideX = function (el,options) {
+    win.slideX = function (el,options) {
         return new lb(el,options).init();
     };
 
 
-})(window, undefined);
+})(window,undefined);
