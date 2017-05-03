@@ -8,7 +8,7 @@ ol {
 }
 #lunbo {
   width: 500px;
-  height: 400px;
+  height: 282px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -17,8 +17,8 @@ ol {
 .prev {
   width: 40px;
   height: 40px;
-  background-color: aqua;
-  color: #000;
+  background-color: rgba(0,0,0,.5);
+  color: #fff;
   font-size: 30px;
   line-height: 40px;
   text-align: center;
@@ -35,6 +35,10 @@ ol {
 .prev {
   right: 0;
 }
+.next:hover,
+.prev:hover{
+  background-color: rgba(0,0,0,1);
+}
 .imgs {
   margin: 0;
   height: 100%;
@@ -44,7 +48,7 @@ ol {
 .imgs li {
   float: left;
   width: 500px;
-  height: 400px;
+  height: 100%;
   transition: all .5s;
 }
 .imgs li img {
