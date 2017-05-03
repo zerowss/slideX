@@ -1,32 +1,31 @@
 ;(function (win, undefined) {
 
-    function lb(el, optins) {
+    function slideXFn(el, optins) {
         this.config = {
             index: 0,
             speed: 2000,
             timer: null,
             type: 'default'
         };
-        this.box = document.getElementById(el);
+        this.box = document.querySelector(el);
         this.netxBtn = this.box.querySelector('.next');
         this.prevBtn = this.box.querySelector('.prev');
-        this.imgs = this.box.querySelector('.imgs');
-        this.imgsLis = this.imgs.querySelectorAll('li');
+        this.slideXContent = this.box.querySelector('.slideX-content');
+        this.imgsLis = this.slideXContent.querySelectorAll('li');
         this.icons = this.box.querySelector('.icon');
         this.len = this.imgsLis.length;
         this.w = this.imgsLis[0].clientWidth;
-        if (!optins) {
-            this.config = this.config;
-        } else {
+
+        if (typeof optins !== 'undefined') {
             this.config = this.extend(this.config, optins);
         }
     }
 
-    lb.prototype = {
-        constructor: lb,
+    slideXFn.prototype = {
+        constructor: slideXFn,
         init: function () {
             var _that = this;
-            this.jiegou();
+            this.circle();
             if (this.config.type != 'default') {
                 this.moveJG();
             }
@@ -37,10 +36,10 @@
             var _that = this;
             var iconsList = this.icons.children;
             this.auto();
-            this.imgs.addEventListener('mouseover', function () {
+            this.slideXContent.addEventListener('mouseover', function () {
                 clearInterval(_that.config.timer);
             });
-            this.imgs.addEventListener('mouseout', function () {
+            this.slideXContent.addEventListener('mouseout', function () {
                 _that.auto();
             });
             this.netxBtn.addEventListener('click', function () {
@@ -60,9 +59,9 @@
                 clearInterval(_that.config.timer);
                 _that.core(_that.prev());
             });
-            for(var i = 0;i<iconsList.length;i++){
+            for (var i = 0; i < iconsList.length; i++) {
                 (function (n) {
-                    iconsList[n].addEventListener('click',function () {
+                    iconsList[n].addEventListener('click', function () {
                         clearInterval(_that.config.timer);
                         _that.core(n);
                     });
@@ -88,27 +87,27 @@
         /*move形式*/
         typeMove: function (index) {
             var _that = this;
-            this.imgs.style.transition = '0.5s';
-            this.imgs.style.transform = 'translateX(-' + this.w * (index + 1) + 'px)';
+            this.slideXContent.style.transition = '0.5s';
+            this.slideXContent.style.transform = 'translateX(-' + this.w * (index + 1) + 'px)';
             if (index == this.len - 1) {
                 setTimeout(function () {
-                    _that.imgs.style.transition = 'none';
-                    _that.imgs.style.transform = 'translateX(0)';
+                    _that.slideXContent.style.transition = 'none';
+                    _that.slideXContent.style.transform = 'translateX(0)';
                 }, 500);
             }
         },
         typeMoveR: function (index) {
             var _that = this;
             if (index == this.len - 1) {
-                this.imgs.style.transition = '0.5s';
-                this.imgs.style.transform = 'translateX(0)';
+                this.slideXContent.style.transition = '0.5s';
+                this.slideXContent.style.transform = 'translateX(0)';
                 setTimeout(function () {
-                    _that.imgs.style.transition = 'none';
-                    _that.imgs.style.transform = 'translateX(-' + _that.w * (_that.len ) + 'px)';
-                },500)
-            }else{
-                this.imgs.style.transition = '0.5s';
-                this.imgs.style.transform = 'translateX(-' + this.w * (index + 1) + 'px)';
+                    _that.slideXContent.style.transition = 'none';
+                    _that.slideXContent.style.transform = 'translateX(-' + _that.w * (_that.len ) + 'px)';
+                }, 500)
+            } else {
+                this.slideXContent.style.transition = '0.5s';
+                this.slideXContent.style.transform = 'translateX(-' + this.w * (index + 1) + 'px)';
             }
         },
         /*默认形式*/
@@ -139,7 +138,7 @@
             }, this.config.speed);
         },
         /*圆点*/
-        jiegou: function () {
+        circle: function () {
             var iconLi = '';
             for (var i = 0; i < this.len; i++) {
                 if (i == 0) {
@@ -161,12 +160,12 @@
         moveJG: function () {
             var firstChild = this.imgsLis[this.len - 1].cloneNode(true),
                 lastChild = this.imgsLis[0].cloneNode(true);
-            this.imgs.insertBefore(firstChild, this.imgsLis[0]);
-            this.imgs.appendChild(lastChild);
-            this.imgs.style.width = (this.len + 2) * 100 + '%';
-            this.imgs.style.transform = 'translateX(-' + this.w + 'px)';
+            this.slideXContent.insertBefore(firstChild, this.imgsLis[0]);
+            this.slideXContent.appendChild(lastChild);
+            this.slideXContent.style.width = (this.len + 2) * 100 + '%';
+            this.slideXContent.style.transform = 'translateX(-' + this.w + 'px)';
         },
-        extend:function (obj1, obj2) {
+        extend: function (obj1, obj2) {
             var o = obj1;
             for (var attr in obj2) {
                 if (typeof obj2[attr] === 'object') {
@@ -179,9 +178,9 @@
         }
     };
 
-    win.slideX = function (el,options) {
-        return new lb(el,options).init();
+    win.slideX = function (el, options) {
+        return new slideXFn(el, options).init();
     };
 
 
-})(window,undefined);
+})(window, undefined);

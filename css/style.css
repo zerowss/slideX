@@ -6,7 +6,7 @@ ul,
 ol {
   list-style: none;
 }
-#lunbo {
+#slideXBox {
   width: 500px;
   height: 282px;
   overflow: hidden;
@@ -39,19 +39,19 @@ ol {
 .prev:hover{
   background-color: rgba(0,0,0,1);
 }
-.imgs {
+.slideX-content {
   margin: 0;
   height: 100%;
   overflow: hidden;
   transition: all .5s;
 }
-.imgs li {
+.slideX-content li {
   float: left;
   width: 500px;
   height: 100%;
   transition: all .5s;
 }
-.imgs li img {
+.slideX-content li img {
   width: 100%;
   height: 100%;
 }
