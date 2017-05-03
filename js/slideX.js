@@ -140,6 +140,7 @@
         /*圆点*/
         circle: function () {
             var iconLi = '';
+            var iconsList = this.icons.children;
             for (var i = 0; i < this.len; i++) {
                 if (i == 0) {
                     iconLi += '<li class="active"></li>';
@@ -149,6 +150,8 @@
 
             }
             this.icons.innerHTML = iconLi;
+            this.icons.style.width = 20*this.len+10*(this.len-1)+'px';
+            this.icons.style.marginLeft = -(20*this.len+10*(this.len-1))/2 + 'px';
         },
         iconActive: function (index) {
             var iconsList = this.icons.children;

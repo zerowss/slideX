@@ -56,12 +56,10 @@ ol {
   height: 100%;
 }
 .icon {
-  width: 120px;
   height: 20px;
   position: absolute;
   left: 50%;
-  bottom: 10px;
-  margin-left: -50px;
+  bottom: 0px;
 }
 .icon li {
   float: left;
